@@ -1,5 +1,2 @@
 #!/bin/bash
-USER=$(whoami)
-echo "User: $USER"
-echo "Groups:"
-groups "$USER"
+groups|cut -d: -f2|tr -s'''\n'
