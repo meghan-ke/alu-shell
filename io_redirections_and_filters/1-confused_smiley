@@ -1,3 +1,2 @@
 #!/bin/bash
-smiley = "(Ôo)"
-echo "confused smiley: $smiley"
+echo "(Ôo)'"
