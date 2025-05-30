@@ -1,5 +1,3 @@
 #!/bin/bash
-file="ls_cwd_content"
-if [ ! -e "$file" ]; then
- ls -la > "$file"
-fi
+ls -la > ls_cwd_content
+
