@@ -1,0 +1,6 @@
+#!/bin/bash
+file =  \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+if [ ! - $file ]; then
+  echo 'Best School' > \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+fi
+
