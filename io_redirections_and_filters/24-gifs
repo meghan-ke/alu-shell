@@ -1,2 +1,4 @@
 #!/bin/bash
-find . -type f -name '*.gif' -printf"%R\n" | sort -f | cut -d. -f1
+find . -type f -name '*.gif' -printf '%h %f\n' | sort -f -k2,2 | awk '!seen[$1]++{print $2}' | cut -d. -f1
+
+
