@@ -3,12 +3,12 @@
 # shellcheck disable=SC2009
 
 for pid in /proc/[0-9]*; do
-  if [ -r "$pid/cmdline" ]; then
-    cmd=$(tr '\0' ' ' < "$pid/cmdline")
-    if [[ $cmd == *4-to_infinity_and_beyond* ]]; then
-      kill "$(basename "$pid")"
-      echo "Process 4-to_infinity_and_beyond with PID $(basename "$pid") has been killed."
-      exit 0
+  cmd_file="$pid/cmdline"
+  if [ -r "$cmd_file" ]; then
+    cmd=$(tr '\0' ' ' < "$cmd_file")
+    if [[ "$cmd" == *4-to_infinity_and_beyond* ]]; then
+      actual_pid=$(basename "$pid")
+      kill "$actual_pid" && echo "Killed process $actual_pid running: $cmd" && exit 0
     fi
   fi
 done
