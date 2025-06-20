@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script automatically stops the 7-highlander process without using kill
+# shellcheck disable=SC2009
+
+for job in $(jobs -p); do
+  cmd=$(cat /proc/"$job"/cmdline 2>/dev/null | tr '\0' ' ')
+  if [[ $cmd == *7-highlander* ]]; then
+    disown "$job"
+    echo "Stopped 7-highlander (PID: $job) by disowning it"
+    break
+  fi
+done
