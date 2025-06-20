@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-# This script automatically stops the 4-to_infinity_and_beyond process without using kill
-# shellcheck disable=SC2009
+# This script terminates the process named "4-to_infinity_and_beyond" using process name matching.
+shellcheck disable=SC2009 
 
-for job in $(jobs -p); do
-  cmd=$(cat /proc/"$job"/cmdline 2>/dev/null | tr '\0' ' ')
-  if [[ $cmd == *4-to_infinity_and_beyond* ]]; then
-    disown "$job"
-    echo "Stopped 4-to_infinity_and_beyond (PID: $job) by disowning it"
-    break
-  fi
-done
+PROCESS_NAME="4-to_infinity_and_beyond"
+
+echo "Attempting to stop process: $PROCESS_NAME"
+
+pkill -f "$PROCESS_NAME"
+
+if [ $? -eq 0 ]; then
+  echo "Process '$PROCESS_NAME' successfully stopped (or no such process was running)."
+else
+  echo "Failed to stop process '$PROCESS_NAME'. It might not be running or you lack sufficient permissions."
+fi
