@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # This script finds and kills the 4-to_infinity_and_beyond process
-pid=$(pgrep -f 4-to_infinity_and_beyond)
+pid=$(ps -eo pid,cmd | grep '[4]-to_infinity_and_beyond' | awk '{print $1}')
 if [ -n "$pid" ]; then
   kill "$pid"
   echo "Process 4-to_infinity_and_beyond with PID $pid has been killed."
