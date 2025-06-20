@@ -1,12 +1,29 @@
 #!/usr/bin/env bash
-#time source code
-hour=0
-while [ "$hour" -le 12 ]; do
-  minute=1
-  while [ "$minute" -le 59 ]; do
-    echo "$hour:$minute"
-    ((minute++))
-  done
-  ((hour++))
-done
+
+# This script displays time from 00:01 to 12:59 using nested while loops.
+# It then pipes the output to 'head -n 70' to show only the first 70 lines.
+
+# Initialize the hours counter to 0.
+hours=0
+
+# Start the outer while loop for hours.
+# The loop continues as long as 'hours' is less than or equal to 12.
+while [ "$hours" -le 12 ]; do
+    # Initialize the minutes counter to 1 for each new hour.
+    minutes=1
+
+    # Start the inner while loop for minutes.
+    # The loop continues as long as 'minutes' is less than or equal to 59.
+    while [ "$minutes" -le 59 ]; do
+        # Use printf to format the hours and minutes with leading zeros
+        # and print them in HH:MM format.
+        printf "%02d:%02d\n" "$hours" "$minutes"
+
+        # Increment the minutes counter.
+        minutes=$((minutes + 1))
+    done
+
+    # Increment the hours counter after all minutes for the current hour have been displayed.
+    hours=$((hours + 1))
+done | head -n 70
 
