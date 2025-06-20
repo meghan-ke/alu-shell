@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Creates /var/run/myscript.pid with PID, prints messages and handles signals properly
+
+PIDFILE="/var/run/myscript.pid"
+
+# Write current PID to the PID file
+echo $$ > "$PIDFILE"
+
+# Handle SIGINT (Ctrl+C)
+handle_sigint() {
+  echo "Y U no love me?!"
+}
+
+# Handle SIGTERM and SIGQUIT: print message, delete PID file, exit
+handle_sigterm_quit() {
+  echo "I hate the kill command"
+  rm -f "$PIDFILE"
+  exit 0
+}
+
+trap handle_sigint SIGINT
+trap handle_sigterm_quit SIGTERM SIGQUIT
+
+# Infinite loop printing the message
+while true; do
+  echo "To infinity and beyond"
+  sleep 1
+done
