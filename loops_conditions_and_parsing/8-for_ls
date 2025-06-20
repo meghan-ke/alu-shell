@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+for file in *; do
+  # Skip if it's not a file or directory (optional depending on what you want)
+  [ -e "$file" ] || continue
+
+  # Extract part after the first dash
+  name_after_dash="${file#*-}"
+
+  # Only display if there's actually a dash in the name
+  if [[ "$file" == *-* ]]; then
+    echo "$name_after_dash"
+  fi
+done
+
