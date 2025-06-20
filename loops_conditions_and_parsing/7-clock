@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 
-# This script displays time from 00:01 to 12:59 using nested while loops.
-# It then pipes the output to 'head -n 70' to show only the first 70 lines.
-
-# Initialize the hours counter to 0.
+# Initialize the hours counter
 hours=0
 
-# Start the outer while loop for hours.
-# The loop continues as long as 'hours' is less than or equal to 12.
 while [ "$hours" -le 12 ]; do
     # Initialize the minutes counter to 1 for each new hour.
     minutes=1
