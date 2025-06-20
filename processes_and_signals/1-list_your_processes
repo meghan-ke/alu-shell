@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-
 # Display all running processes for all users
 ps -eo user,pid,ppid,tty,stat,start,time,cmd --forest
