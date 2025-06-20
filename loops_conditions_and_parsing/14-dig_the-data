@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#html
+awk '{ print $1, $9 }' access.log | sort | uniq -c | sort -nr
+
